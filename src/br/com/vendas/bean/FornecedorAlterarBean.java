@@ -30,11 +30,13 @@ public class FornecedorAlterarBean {
 	public void alterar() {
 		FornecedorDao fdao = new FornecedorDao();
 		fdao.alterar(fornecedor);
-		fornecedor = new Fornecedor();
+		limpar();
 	}
 	
 	public void excluir() {
-		
+		FornecedorDao fdao = new FornecedorDao();
+		fdao.excluir(fornecedor);
+		limpar();
 	}
 	
 	public String getAcao() {
@@ -62,6 +64,10 @@ public class FornecedorAlterarBean {
 
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
+	}
+	
+	private void limpar() {
+		fornecedor = new Fornecedor();
 	}
 	
 	

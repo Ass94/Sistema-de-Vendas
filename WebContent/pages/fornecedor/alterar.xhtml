@@ -34,7 +34,7 @@
 			<p:commandButton value="Editar" actionListener="#{FornecedorAlterarBean.alterar}" 
 			update=":msgGlobal :formForAlterar:panelForAlterar"/>
 			<p:commandButton value="Excluir" actionListener="#{FornecedorAlterarBean.excluir}"
-			update=":msgGlobal" rendered="#{FornecedorAlterarBean.acao == 'Excluir'}"/>
+			update=":msgGlobal :formForAlterar:panelForAlterar" rendered="#{FornecedorAlterarBean.acao == 'Excluir'}"/>
 			</h:panelGrid>
 		</h:form>
 	</ui:define>

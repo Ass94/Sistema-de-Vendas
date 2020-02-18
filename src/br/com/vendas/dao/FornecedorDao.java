@@ -14,6 +14,7 @@ public class FornecedorDao extends DAO {
 	private final String LISTAR_TODOS = "{ call pSeltVenForn }";
 	private final String ATUALIZAR = "{ call pUpdtVenForn(?,?) }";
 	private final String BUSCAR_POR_ID = "{ call pSeltVenForn2(?) }";
+	private final String EXCLUIR = "{ call pDeltVenForn(?) }";
 	
 	public void salvar(Fornecedor fornecedor) {
 		CallableStatement prepared = null;
@@ -76,6 +77,17 @@ public class FornecedorDao extends DAO {
 			throw new RuntimeException(e);
 		}
 		return retorno;
+	}
+	
+	public void excluir(Fornecedor fornecedor) {
+		CallableStatement prepared = null;
+		try {
+			prepared = connection.prepareCall(EXCLUIR);
+			prepared.setLong(1, fornecedor.getId());
+			prepared.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }
