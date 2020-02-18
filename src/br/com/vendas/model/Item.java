@@ -16,8 +16,7 @@ public class Item implements Serializable {
 	public Item() {
 	}
 
-	public Item(Long id, Integer quantidade, BigDecimal valorParcial, Produto produto, Venda venda) {
-		this.id = id;
+	public Item(Integer quantidade, BigDecimal valorParcial, Produto produto, Venda venda) {
 		this.quantidade = quantidade;
 		this.valorParcial = valorParcial;
 		this.produto = produto;

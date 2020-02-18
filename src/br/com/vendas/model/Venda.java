@@ -2,14 +2,14 @@ package br.com.vendas.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.Calendar;
 
 public class Venda implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-	private Date horario;
+	private Calendar horario;
 	private BigDecimal valorTotal;
 	
 	private Funcionario funcionario;
@@ -17,7 +17,7 @@ public class Venda implements Serializable {
 	public Venda() {
 	}
 
-	public Venda(Long id, Date horario, BigDecimal valorTotal, Funcionario funcionario) {
+	public Venda(Long id, Calendar horario, BigDecimal valorTotal, Funcionario funcionario) {
 		this.id = id;
 		this.horario = horario;
 		this.valorTotal = valorTotal;
@@ -32,11 +32,11 @@ public class Venda implements Serializable {
 		this.id = id;
 	}
 
-	public Date getHorario() {
+	public Calendar getHorario() {
 		return horario;
 	}
 
-	public void setHorario(Date horario) {
+	public void setHorario(Calendar horario) {
 		this.horario = horario;
 	}
 

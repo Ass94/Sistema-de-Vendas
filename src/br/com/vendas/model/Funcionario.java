@@ -15,8 +15,7 @@ public class Funcionario implements Serializable{
 	public Funcionario() {
 	}
 
-	public Funcionario(Long id, String nome, String cpf, String senha, String funcao) {
-		this.id = id;
+	public Funcionario(String nome, String cpf, String senha, String funcao) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.senha = senha;
