@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/template.xhtml">
+
+<ui:define name="metadata">
+	<f:metadata>
+		<f:viewParam name="proacao" value="#{ProdutoAlterarBean.acao}"/>
+		<f:viewParam name="procod" value="#{ProdutoAlterarBean.codigo}"/>
+		<f:event listener="#{ProdutoAlterarBean.carregar}" type="preRenderView"/>
+	</f:metadata>
+</ui:define>
+
+<ui:define name="conteudo">
+		<h:form id="formProdutoAlterar">
+			<p:toolbar>
+				<f:facet name="left">
+					<h:outputText value="Produtos" />
+				</f:facet>
+			</p:toolbar>
+		<h:panelGrid columns="2" id="panelProdutoAlterar">
+			<p:outputLabel value="Código"/>
+			<p:inputText maxlength="20" size="10" readonly="true"
+				value="#{ProdutoAlterarBean.produto.id}"/>
+			<p:outputLabel value="Descrição"/>
+			<p:inputText maxlength="50" size="20" value="#{ProdutoAlterarBean.produto.descricao}"
+			readonly="#{ProdutoAlterarBean.acao == 'Excluir'}"/>
+			<p:outputLabel value="Quantidade"/>
+			<p:inputText maxlength="50" size="20" value="#{ProdutoAlterarBean.produto.quantidade}"
+			readonly="#{ProdutoAlterarBean.acao == 'Excluir'}"/>
+			<p:outputLabel value="Preço"/>
+			<p:inputText maxlength="50" size="20" value="#{ProdutoAlterarBean.produto.preco}"
+			readonly="#{ProdutoAlterarBean.acao == 'Excluir'}"/>
+			<p:outputLabel value="Fornecedor"/>
+			<p:selectOneMenu value="#{ProdutoAlterarBean.produto.fornecedor}"
+			readonly="#{ProdutoAlterarBean.acao == 'Excluir'}" converter="fornecedorConverter">
+			<f:selectItem itemValue="" itemLabel="Selecione um fornecedor"/>
+			<f:selectItems value="#{ProdutoAlterarBean.fornecedores}"
+			var="fornecedor" itemValue="#{fornecedor}" itemLabel="#{fornecedor.descricao}"/>
+			</p:selectOneMenu>
+		</h:panelGrid>
+		<h:panelGrid columns="4">
+			<p:commandButton value="Editar" actionListener="#{ProdutoAlterarBean.editar}"
+			update=":msgGlobal" rendered="#{ProdutoAlterarBean.acao == 'Editar'}"/>
+			<p:commandButton value="Excluir" actionListener="#{ProdutoAlterarBean.excluir}"
+			update=":msgGlobal" rendered="#{ProdutoAlterarBean.acao == 'Excluir'}"/>
+			<p:button value="Voltar" outcome="/pages/produto/index.xhtml"/>
+		</h:panelGrid>
+	</h:form>
+</ui:define>
+</ui:composition>

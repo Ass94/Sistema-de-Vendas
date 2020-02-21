@@ -4,8 +4,45 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/templates/template.xhtml">
 
-	
+<ui:define name="metadata">
+	<f:metadata>
+		<f:event listener="#{ProdutoIncluirBean.carregar}" type="preRenderView"/>
+	</f:metadata>
+</ui:define>
 
+<ui:define name="conteudo">
+		<h:form id="formProdutoIncluir">
+			<p:toolbar>
+				<f:facet name="left">
+					<h:outputText value="Produtos" />
+				</f:facet>
+			</p:toolbar>
+		<h:panelGrid columns="2" id="panelProdutoIncluir">
+			<p:outputLabel value="Código"/>
+			<p:inputText maxlength="20" size="10" readonly="true"
+				value="#{ProdutoIncluirBean.produto.id}"/>
+			<p:outputLabel value="Descrição"/>
+			<p:inputText maxlength="50" size="20" value="#{ProdutoIncluirBean.produto.descricao}"/>
+			<p:outputLabel value="Quantidade"/>
+			<p:inputText maxlength="50" size="20" value="#{ProdutoIncluirBean.produto.quantidade}"/>
+			<p:outputLabel value="Preço"/>
+			<p:inputText maxlength="50" size="20" value="#{ProdutoIncluirBean.produto.preco}"/>
+			<p:outputLabel value="Fornecedor"/>
+			<p:selectOneMenu value="#{ProdutoIncluirBean.produto.fornecedor}"
+			converter="fornecedorConverter">
+			<f:selectItem itemValue="" itemLabel="Selecione um fornecedor"/>
+			<f:selectItems value="#{ProdutoIncluirBean.fornecedores}"
+			var="fornecedor" itemValue="#{fornecedor}" itemLabel="#{fornecedor.descricao}"/>
+			</p:selectOneMenu>
+		</h:panelGrid>
+		<h:panelGrid columns="4">
+			<p:commandButton value="Salvar" actionListener="#{ProdutoIncluirBean.salvar}"
+			update=":msgGlobal :formProdutoIncluir:panelProdutoIncluir"/>
+			<p:button value="Voltar" outcome="/pages/produto/index.xhtml"/>
+		</h:panelGrid>
+	</h:form>
+</ui:define>
 </ui:composition>
